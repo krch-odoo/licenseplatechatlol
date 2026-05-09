@@ -187,8 +187,6 @@ table.profile-tbl tr:hover td{background:var(--card2)}
   transition: transform .45s cubic-bezier(.16,1,.3,1);
 }
 .audio-player.visible { transform: translateY(0); }
-
-/* gradient accent line along the top edge */
 .audio-player::before {
   content: '';
   position: absolute;
@@ -197,7 +195,6 @@ table.profile-tbl tr:hover td{background:var(--card2)}
   background: var(--grad-hero);
   opacity: .6;
 }
-
 .ap-play {
   width: 40px; height: 40px;
   border-radius: 50%;
@@ -215,11 +212,9 @@ table.profile-tbl tr:hover td{background:var(--card2)}
 }
 .ap-play:hover { transform: scale(1.1); box-shadow: 0 0 22px rgba(255,60,172,.55); }
 .ap-play:active { transform: scale(.94); opacity: .85; }
-
 .ap-info { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; min-width: 0; max-width: 150px; }
 .ap-track { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
 .ap-sub { font-size: 10px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
-
 .ap-progress-wrap { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .ap-bar-track {
   height: 3px;
@@ -236,7 +231,6 @@ table.profile-tbl tr:hover td{background:var(--card2)}
   pointer-events: none;
   transition: width .25s linear;
 }
-/* scrubber thumb */
 .ap-bar-track::after {
   content: '';
   position: absolute;
@@ -250,7 +244,6 @@ table.profile-tbl tr:hover td{background:var(--card2)}
   pointer-events: none;
 }
 .ap-bar-track:hover::after { transform: translate(-50%,-50%) scale(1); }
-
 .ap-times {
   display: flex;
   justify-content: space-between;
@@ -258,13 +251,8 @@ table.profile-tbl tr:hover td{background:var(--card2)}
   color: var(--faint);
   font-family: var(--mono);
 }
-
 .ap-vol-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.ap-vol-icon {
-  font-size: 14px; cursor: pointer;
-  color: var(--muted); transition: color .15s;
-  user-select: none; line-height: 1;
-}
+.ap-vol-icon { font-size: 14px; cursor: pointer; color: var(--muted); transition: color .15s; user-select: none; line-height: 1; }
 .ap-vol-icon:hover { color: var(--text); }
 input.ap-vol-slider {
   -webkit-appearance: none; appearance: none;
@@ -289,7 +277,6 @@ input.ap-vol-slider::-moz-range-thumb {
   border: none;
   cursor: pointer;
 }
-
 .ap-dismiss {
   background: none; border: none;
   color: var(--faint); font-size: 18px;
@@ -298,8 +285,6 @@ input.ap-vol-slider::-moz-range-thumb {
   padding: 4px; line-height: 1;
 }
 .ap-dismiss:hover { color: var(--text); }
-
-/* push page content up so nothing hides behind the player */
 body.player-visible { padding-bottom: 64px; }
 
 @media(max-width:600px){
@@ -429,18 +414,13 @@ body.player-visible { padding-bottom: 64px; }
 <footer class="footer">chris's license plate chat &bull; year one wrapped</footer>
 </div><!-- /page -->
 
-<!-- ══════════════════════════════════════════
-     FLOATING AUDIO PLAYER
-     ➜ Replace YOUR_AUDIO_FILE.mp3 with the
-       actual path to your audio file.
-       E.g. "music/vibes.mp3" or a full URL.
-     ══════════════════════════════════════════ -->
-<audio id="ap-audio" src="Out-Here-Gridin.mp3" preload="metadata" loop></audio>
+<!-- AUDIO — src matches the exact filename in the repo -->
+<audio id="ap-audio" src="Out-Here-Grindin.mp3" preload="metadata" loop></audio>
 
 <div class="audio-player" id="audio-player">
   <button class="ap-play" id="ap-play-btn" aria-label="Play">&#9654;</button>
   <div class="ap-info">
-    <div class="ap-track" id="ap-track-name">Now Playing</div>
+    <div class="ap-track" id="ap-track-name">Out Here Grindin</div>
     <div class="ap-sub">Plate Wrapped</div>
   </div>
   <div class="ap-progress-wrap">
@@ -460,7 +440,6 @@ body.player-visible { padding-bottom: 64px; }
 </div>
 
 <script>
-// ─── AUDIO PLAYER ───────────────────────────────────────────────
 (function() {
   const audio     = document.getElementById('ap-audio');
   const player    = document.getElementById('audio-player');
@@ -472,16 +451,10 @@ body.player-visible { padding-bottom: 64px; }
   const volSlider = document.getElementById('ap-vol-slider');
   const volIcon   = document.getElementById('ap-vol-icon');
   const dismiss   = document.getElementById('ap-dismiss');
-  const trackName = document.getElementById('ap-track-name');
-
-  // ── Set the display name of your track here ──────────────────
-  const TRACK_DISPLAY_NAME = 'Out Here Grindin';
-  trackName.textContent = TRACK_DISPLAY_NAME;
 
   let isPlaying = false;
   let scrubbing = false;
 
-  // Show player after a short delay
   setTimeout(() => {
     player.classList.add('visible');
     document.body.classList.add('player-visible');
@@ -506,26 +479,16 @@ body.player-visible { padding-bottom: 64px; }
     curEl.textContent = fmt(audio.currentTime);
   }
 
-  // Play / Pause
   playBtn.addEventListener('click', () => {
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play().catch(() => {});
-    }
+    if (isPlaying) { audio.pause(); } else { audio.play().catch(() => {}); }
   });
 
   audio.addEventListener('play',  () => { isPlaying = true;  setPlayIcon(true);  });
   audio.addEventListener('pause', () => { isPlaying = false; setPlayIcon(false); });
   audio.addEventListener('ended', () => { isPlaying = false; setPlayIcon(false); barFill.style.width = '0%'; curEl.textContent = '0:00'; });
-
-  audio.addEventListener('loadedmetadata', () => {
-    durEl.textContent = fmt(audio.duration);
-  });
-
+  audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmt(audio.duration); });
   audio.addEventListener('timeupdate', updateBar);
 
-  // Scrubbing
   function scrubTo(e) {
     const rect = barTrack.getBoundingClientRect();
     const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
@@ -537,37 +500,25 @@ body.player-visible { padding-bottom: 64px; }
     }
   }
 
-  barTrack.addEventListener('mousedown', (e) => {
-    scrubbing = true;
-    scrubTo(e);
-  });
+  barTrack.addEventListener('mousedown', (e) => { scrubbing = true; scrubTo(e); });
   document.addEventListener('mousemove', (e) => { if (scrubbing) scrubTo(e); });
   document.addEventListener('mouseup',   ()  => { scrubbing = false; });
-
-  // Touch scrubbing
-  barTrack.addEventListener('touchstart', (e) => {
-    scrubbing = true;
-    scrubTo(e.touches[0]);
-    e.preventDefault();
-  }, { passive: false });
+  barTrack.addEventListener('touchstart', (e) => { scrubbing = true; scrubTo(e.touches[0]); e.preventDefault(); }, { passive: false });
   document.addEventListener('touchmove',  (e) => { if (scrubbing) scrubTo(e.touches[0]); }, { passive: true });
   document.addEventListener('touchend',   ()  => { scrubbing = false; });
 
-  // Volume
   audio.volume = parseFloat(volSlider.value);
   volSlider.addEventListener('input', () => {
     audio.volume = parseFloat(volSlider.value);
     audio.muted  = audio.volume === 0;
     volIcon.textContent = audio.volume === 0 ? '🔇' : audio.volume < 0.4 ? '🔉' : '🔊';
   });
-
   volIcon.addEventListener('click', () => {
     audio.muted = !audio.muted;
     volIcon.textContent = audio.muted ? '🔇' : '🔊';
-    volSlider.value     = audio.muted ? 0 : audio.volume;
+    volSlider.value = audio.muted ? 0 : audio.volume;
   });
 
-  // Dismiss
   dismiss.addEventListener('click', () => {
     audio.pause();
     player.classList.remove('visible');
@@ -575,7 +526,6 @@ body.player-visible { padding-bottom: 64px; }
     setTimeout(() => player.remove(), 500);
   });
 })();
-// ─── END AUDIO PLAYER ───────────────────────────────────────────
 </script>
 
 <script>
@@ -597,7 +547,6 @@ const PEOPLE = [
 
 const ALL_PLATES = [{"plate":"GYR FLCN","spotter":"Chris","date":"2025-03-27","car":"Subaru","state":"New York","notes":"First Plate submission"},{"plate":"MOES LOL","spotter":"Chris","date":"2025-05-05","car":"","state":"New York","notes":""},{"plate":"JOESDELI","spotter":"Sam","date":"2025-05-13","car":"GMC","state":"New York","notes":""},{"plate":"XMASGIFT","spotter":"Sam","date":"2025-05-14","car":"Tesla","state":"New York","notes":""},{"plate":"GOOGL ME","spotter":"Chris","date":"2025-05-30","car":"Mercedes","state":"New York","notes":"First submitted Two-Fer with 1 of 350"},{"plate":"1 OF 350","spotter":"Chris","date":"2025-05-30","car":"McLaren","state":"New York","notes":"First submitted Two-Fer with GOOGL ME"},{"plate":"WINGSPLZ","spotter":"Sam","date":"2025-05-31","car":"","state":"New York","notes":"Found on a Restaurant Wall"},{"plate":"APAHOUSE","spotter":"Sam","date":"2025-05-31","car":"","state":"New York","notes":"Found on a Restaurant Wall"},{"plate":"BOYSOUL","spotter":"Sam","date":"2025-06-04","car":"Audi","state":"New York","notes":""},{"plate":"MSMETRO","spotter":"Chris","date":"2025-06-05","car":"Kia","state":"New York","notes":""},{"plate":"YICKETTY","spotter":"Sam","date":"2025-06-07","car":"Chevy","state":"New York","notes":""},{"plate":"ONSIGHT","spotter":"Sam","date":"2025-06-07","car":"BMW","state":"New York","notes":""},{"plate":"HOTWADD","spotter":"Gab","date":"2025-06-08","car":"Chevy","state":"New York","notes":""},{"plate":"TONE ONE","spotter":"Emma","date":"2025-06-16","car":"Chevy","state":"New York","notes":""},{"plate":"SMANT","spotter":"Emma","date":"2025-06-16","car":"Lexus","state":"New York","notes":""},{"plate":"NONA 1","spotter":"Emma","date":"2025-06-17","car":"Mini Cooper","state":"New York","notes":""},{"plate":"RIG GIE","spotter":"Chris","date":"2025-06-17","car":"Honda","state":"New York","notes":""},{"plate":"MIRCLWIP","spotter":"Sam","date":"2025-06-20","car":"Mercedes","state":"New York","notes":""},{"plate":"R 5 GIGL","spotter":"Sam","date":"2025-06-24","car":"Buick","state":"New York","notes":""},{"plate":"CLEMMI","spotter":"Emma","date":"2025-06-25","car":"Toyota","state":"New York","notes":""},{"plate":"JSTBGLAD","spotter":"Emma","date":"2025-06-25","car":"Subaru","state":"New York","notes":""},{"plate":"WLKONWTR","spotter":"Chris","date":"2025-06-25","car":"Honda","state":"New York","notes":"Guest Submission from Sarah"},{"plate":"LINDA LU","spotter":"Chris","date":"2025-07-03","car":"Toyota","state":"New York","notes":""},{"plate":"OBX CFO","spotter":"Emma","date":"2025-07-05","car":"Jeep","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"XBOOBX","spotter":"Emma","date":"2025-07-07","car":"","state":"Virginia","notes":"Virginia Plate, Found on Restaurant Wall"},{"plate":"L0B5TAH","spotter":"Emma","date":"2025-07-07","car":"","state":"Virginia","notes":"Virginia Plate, Found on Restaurant Wall"},{"plate":"I TRVL","spotter":"Emma","date":"2025-07-07","car":"","state":"Kentucky","notes":"Kentucky Plate, Found on Restaurant Wall"},{"plate":"RANA","spotter":"Emma","date":"2025-07-07","car":"Kia","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"SAY WHUT","spotter":"Emma","date":"2025-07-07","car":"","state":"New York","notes":"Virginia Plate, Found on Restaurant Wall"},{"plate":"COW MOO","spotter":"Emma","date":"2025-07-07","car":"","state":"Wisconsin","notes":"Wisconsin Plate, Found on Restaurant Wall"},{"plate":"SCHRODS","spotter":"Sam","date":"2025-07-08","car":"Cadillac","state":"New York","notes":""},{"plate":"RDY2GRUV","spotter":"Emma","date":"2025-07-08","car":"Subaru","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"FISH DOC","spotter":"Emma","date":"2025-07-09","car":"Subaru","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"OFFSHOR","spotter":"Emma","date":"2025-07-09","car":"Chevy","state":"Virginia","notes":"Virginia Plate"},{"plate":"TREK ON","spotter":"Emma","date":"2025-07-18","car":"Lexus","state":"New York","notes":""},{"plate":"THFC","spotter":"Sam","date":"2025-07-22","car":"Ford","state":"New York","notes":""},{"plate":"2HDEURN","spotter":"Chris","date":"2025-07-23","car":"Kia","state":"New York","notes":""},{"plate":"UAW THUG","spotter":"Emma","date":"2025-07-23","car":"Ford","state":"New York","notes":""},{"plate":"BILSWU","spotter":"Emma","date":"2025-07-24","car":"Jeep","state":"New York","notes":""},{"plate":"CATLDY","spotter":"Chris","date":"2025-07-30","car":"Chevy","state":"New York","notes":""},{"plate":"EZPEEZ","spotter":"Emma","date":"2025-08-03","car":"Subaru","state":"New Hampshire","notes":"New Hampshire"},{"plate":"TOASTY7","spotter":"Sam","date":"2025-08-03","car":"Hyundai","state":"Virginia","notes":"Virginia"},{"plate":"OMOMOM","spotter":"Sam","date":"2025-08-07","car":"Ford","state":"New York","notes":""},{"plate":"BOYSOUL","spotter":"Chris","date":"2025-08-07","car":"Volkswagen","state":"New York","notes":"2nd find of BOYSOUL on a different car than when Sam found it"},{"plate":"ITS FO","spotter":"Sam","date":"2025-08-07","car":"Cadillac","state":"New York","notes":""},{"plate":"DJXTREME","spotter":"Sam","date":"2025-08-08","car":"Chevy","state":"New York","notes":""},{"plate":"SONGWRTR","spotter":"Emma","date":"2025-08-08","car":"Jeep","state":"New York","notes":"Guest submission from Kendalle"},{"plate":"BURNIT","spotter":"Chris","date":"2025-08-10","car":"Honda","state":"New York","notes":""},{"plate":"BORNRKLS","spotter":"Chris","date":"2025-08-12","car":"Jeep","state":"New York","notes":""},{"plate":"2MUCH2","spotter":"Sam","date":"2025-08-18","car":"Ford","state":"Alaska","notes":"Alaska"},{"plate":"BTRFLY","spotter":"Sam","date":"2025-08-18","car":"","state":"Alaska","notes":"Alaska"},{"plate":"BUN BUN","spotter":"Sam","date":"2025-08-18","car":"Porsche","state":"Alaska","notes":"Alaska"},{"plate":"RDWARRIR","spotter":"Gab","date":"2025-08-26","car":"Toyota","state":"New York","notes":""},{"plate":"LEGLESS","spotter":"Emma","date":"2025-08-31","car":"Chevy","state":"New York","notes":""},{"plate":"BAT MAM","spotter":"Sam","date":"2025-09-09","car":"Tesla","state":"New York","notes":""},{"plate":"IM A EAGL","spotter":"Chris","date":"2025-09-11","car":"Chevy","state":"Ohio","notes":"Ohio"},{"plate":"SENSORS","spotter":"Sam","date":"2025-09-18","car":"Honda","state":"New York","notes":""},{"plate":"GROLLA","spotter":"Sam","date":"2025-09-18","car":"Toyota","state":"New York","notes":""},{"plate":"EL JEFEE","spotter":"Sam","date":"2025-09-18","car":"Mercedes","state":"New York","notes":""},{"plate":"OLEH","spotter":"Sam","date":"2025-09-19","car":"Lexus","state":"New York","notes":""},{"plate":"GOOFY AH","spotter":"Sam","date":"2025-09-21","car":"Audi","state":"New York","notes":""},{"plate":"THANXSMA","spotter":"Chris","date":"2025-09-22","car":"Kia","state":"New York","notes":""},{"plate":"BIG CAP0","spotter":"Chris","date":"2025-09-22","car":"Jeep","state":"New York","notes":""},{"plate":"FONZIE","spotter":"Chris","date":"2025-09-23","car":"Toyota","state":"New York","notes":""},{"plate":"LUCCIFER","spotter":"Sam","date":"2025-09-23","car":"Cadillac","state":"New York","notes":""},{"plate":"SUBIE BB","spotter":"Sam","date":"2025-09-23","car":"Subaru","state":"Ontario","notes":"Ontario"},{"plate":"FARMOR","spotter":"Sam","date":"2025-09-23","car":"Jeep","state":"New York","notes":""},{"plate":"KIM C","spotter":"Sheila","date":"2025-09-25","car":"Chevy","state":"New York","notes":""},{"plate":"FISHLADY","spotter":"Sam","date":"2025-09-26","car":"Toyota","state":"Ontario","notes":"Ontario"},{"plate":"LESB1AN","spotter":"Sam","date":"2025-09-26","car":"Dodge","state":"New York","notes":""},{"plate":"420YK","spotter":"Sam","date":"2025-09-29","car":"Tesla","state":"Florida","notes":"Florida"},{"plate":"MKSMBRDS","spotter":"Chris","date":"2025-09-30","car":"Chevy","state":"New York","notes":"Guest submission from Sarah"},{"plate":"EVILTWNZ","spotter":"Sam","date":"2025-10-02","car":"Tesla","state":"New York","notes":""},{"plate":"PL@Y","spotter":"Sam","date":"2025-10-02","car":"Volkswagen","state":"North Carolina","notes":"North Carolina"},{"plate":"PAINPLSR","spotter":"Sam","date":"2025-10-02","car":"Dodge","state":"New York","notes":""},{"plate":"ADBULHAQ","spotter":"Sheila","date":"2025-10-05","car":"Chevy","state":"New York","notes":""},{"plate":"LOL YEET","spotter":"Sam","date":"2025-10-06","car":"Chevy","state":"New York","notes":""},{"plate":"SUGARNG","spotter":"Emma","date":"2025-10-07","car":"Dodge","state":"New York","notes":""},{"plate":"NOCCFEES","spotter":"Emma","date":"2025-10-07","car":"Mercedes","state":"New York","notes":""},{"plate":"ROB EM","spotter":"Sheila","date":"2025-10-15","car":"Chevy","state":"New York","notes":""},{"plate":"DUBZ","spotter":"Sam","date":"2025-10-16","car":"Hyundai","state":"Ohio","notes":"Ohio"},{"plate":"FACEBOCK","spotter":"Sam","date":"2025-10-29","car":"Lexus","state":"New York","notes":"Guest submission from Sam's Mom"},{"plate":"MRS DAP","spotter":"Chris","date":"2025-10-30","car":"Jeep","state":"New York","notes":""},{"plate":"L1V3R","spotter":"Emma","date":"2025-11-05","car":"Mini Cooper","state":"New York","notes":""},{"plate":"POOH BAH","spotter":"Chris","date":"2025-11-07","car":"Subaru","state":"New York","notes":"Guest submission from Sarah"},{"plate":"DANA LUV","spotter":"Emma","date":"2025-11-10","car":"Ford","state":"New York","notes":""},{"plate":"LADYDI 1","spotter":"Gab","date":"2025-11-11","car":"Cadillac","state":"New York","notes":""},{"plate":"BLAKBTTY","spotter":"Chris","date":"2025-11-12","car":"Chevy","state":"New York","notes":"Guest submission from Sarah"},{"plate":"BIG LOU","spotter":"Sheila","date":"2025-11-12","car":"Dodge","state":"New York","notes":""},{"plate":"ACME CAB","spotter":"Sheila","date":"2025-11-13","car":"Audi","state":"New York","notes":""},{"plate":"WORM 1","spotter":"Emma","date":"2025-11-13","car":"GMC","state":"New York","notes":""},{"plate":"AH U4RIA","spotter":"Emma","date":"2025-11-15","car":"Jaguar","state":"New York","notes":""},{"plate":"HOPE","spotter":"Emma","date":"2025-11-15","car":"Lexus","state":"New York","notes":""},{"plate":"SLOWCAH","spotter":"Sheila","date":"2025-11-22","car":"Chevy","state":"New York","notes":""},{"plate":"K1TT3N","spotter":"Emma","date":"2025-11-23","car":"Ford","state":"New York","notes":""},{"plate":"ABUELA25","spotter":"Emma","date":"2025-11-24","car":"Chevy","state":"New York","notes":""},{"plate":"GOB1LL","spotter":"Emma","date":"2025-11-26","car":"Toyota","state":"New York","notes":""},{"plate":"SAX DJ","spotter":"Emma","date":"2025-11-26","car":"Lexus","state":"New York","notes":""},{"plate":"HAWKIE","spotter":"Emma","date":"2025-11-28","car":"Ford","state":"New York","notes":""},{"plate":"716MAF","spotter":"Emma","date":"2025-11-29","car":"Toyota","state":"New York","notes":""},{"plate":"CWBY FAN","spotter":"Sam","date":"2025-11-30","car":"Ford","state":"Pennsylvania","notes":"Pennsylvania"},{"plate":"MELODY","spotter":"Chris","date":"2025-12-01","car":"Toyota","state":"New York","notes":""},{"plate":"SONGWRTR","spotter":"Emma","date":"2025-12-01","car":"Jeep","state":"New York","notes":"Was a previous guest submission from a friend"},{"plate":"716 BEES","spotter":"Emma","date":"2025-12-02","car":"Mazda","state":"New York","notes":""},{"plate":"CHICKA07","spotter":"Chris","date":"2025-12-02","car":"Jeep","state":"New York","notes":""},{"plate":"M RING","spotter":"Emma","date":"2025-12-07","car":"Nissan","state":"New York","notes":""},{"plate":"AUSHREK","spotter":"Chris","date":"2025-12-08","car":"Kia","state":"New York","notes":""},{"plate":"SIG44","spotter":"Sheila","date":"2025-12-12","car":"Ford","state":"New York","notes":""},{"plate":"M4RELOAD","spotter":"Emma","date":"2025-12-16","car":"BMW","state":"New York","notes":""},{"plate":"LOL YEET","spotter":"Emma","date":"2025-12-17","car":"Chevy","state":"New York","notes":""},{"plate":"MIKE WIF","spotter":"Chris","date":"2025-12-18","car":"GMC","state":"New York","notes":""},{"plate":"FLYNAVY5","spotter":"Chris","date":"2025-12-19","car":"Mercedes","state":"New York","notes":""},{"plate":"GG GHOST","spotter":"Chris","date":"2025-12-22","car":"Volvo","state":"New York","notes":""},{"plate":"ISLAM","spotter":"Sam","date":"2025-12-23","car":"Toyota","state":"New York","notes":""},{"plate":"MRS Y","spotter":"Chris","date":"2025-12-31","car":"Mercedes","state":"New York","notes":""},{"plate":"IMOVURIT","spotter":"Emma","date":"2026-01-02","car":"Acura","state":"New York","notes":""},{"plate":"HAPPYCAP","spotter":"Chris","date":"2026-01-02","car":"Jeep","state":"New York","notes":""},{"plate":"HAPL","spotter":"Chris","date":"2026-01-03","car":"Lincoln","state":"Ontario","notes":"Ontario"},{"plate":"SHEMOB","spotter":"Chris","date":"2026-01-03","car":"GMC","state":"New York","notes":""},{"plate":"BOOKERS","spotter":"Sheila","date":"2026-01-04","car":"Dodge","state":"New York","notes":""},{"plate":"SEINFELD","spotter":"Chris","date":"2026-01-12","car":"Ford","state":"New York","notes":""},{"plate":"ACADIAME","spotter":"Chris","date":"2026-01-14","car":"Subaru","state":"New York","notes":"Captured Side by side with NO MUN E"},{"plate":"NO MUN E","spotter":"Chris","date":"2026-01-14","car":"Mercury","state":"New York","notes":"Captured Side by side with ACADIAME"},{"plate":"ANIMAL","spotter":"Chris","date":"2026-01-15","car":"","state":"New York","notes":"2016 revisited trend"},{"plate":"HYPEMANN","spotter":"Emma","date":"2026-01-28","car":"Ford","state":"New York","notes":""},{"plate":"NICXCAGE","spotter":"Chris","date":"2026-02-02","car":"Mini Cooper","state":"New York","notes":""},{"plate":"GODSGAVE","spotter":"Chris","date":"2026-02-02","car":"Jeep","state":"New York","notes":""},{"plate":"YO NELLY","spotter":"Chris","date":"2026-02-04","car":"Ford","state":"New York","notes":""},{"plate":"BRINGNIT","spotter":"Chris","date":"2026-02-05","car":"BMW","state":"New York","notes":""},{"plate":"ELMO 36","spotter":"Chris","date":"2026-02-05","car":"Nissan","state":"New York","notes":""},{"plate":"COOLTURE","spotter":"Sam","date":"2026-02-05","car":"BMW","state":"New York","notes":""},{"plate":"GWAMMA","spotter":"Chris","date":"2026-02-08","car":"Chrysler","state":"New York","notes":"Guest submission from Sarah"},{"plate":"SUBOO","spotter":"Sam","date":"2026-02-12","car":"","state":"New York","notes":""},{"plate":"SAD GURL","spotter":"Emma","date":"2026-02-14","car":"Jeep","state":"New York","notes":""},{"plate":"KITANA","spotter":"Chris","date":"2026-02-17","car":"Jeep","state":"New York","notes":""},{"plate":"TAX MAN","spotter":"Chris","date":"2026-02-17","car":"","state":"New York","notes":"Found at Tax Appointment"},{"plate":"JAKSKLTN","spotter":"Chris","date":"2026-02-18","car":"Jeep","state":"New York","notes":""},{"plate":"A HUSKER","spotter":"Sheila","date":"2026-02-20","car":"Toyota","state":"New York","notes":""},{"plate":"NICXCAGE","spotter":"Chris","date":"2026-02-24","car":"Mini Cooper","state":"New York","notes":""},{"plate":"I ADJUST","spotter":"Chris","date":"2026-02-25","car":"Subaru","state":"New York","notes":"Guest submission from Sarah"},{"plate":"AWWBEANS","spotter":"Sam","date":"2026-02-26","car":"Subaru","state":"New York","notes":""},{"plate":"ONDGRIND","spotter":"Sheila","date":"2026-03-02","car":"Lexus","state":"New York","notes":""},{"plate":"1 MAMA","spotter":"Sam","date":"2026-03-05","car":"Mini Cooper","state":"New York","notes":""},{"plate":"L3T IT B","spotter":"Emma","date":"2026-03-07","car":"Lexus","state":"New York","notes":""},{"plate":"LITL ANG","spotter":"Emma","date":"2026-03-09","car":"Mini Cooper","state":"Illinois","notes":"Illinois"},{"plate":"JOSH A17","spotter":"Sheila","date":"2026-03-09","car":"Ford","state":"New York","notes":""},{"plate":"HUHH MAN","spotter":"Emma","date":"2026-03-10","car":"Jeep","state":"New York","notes":""},{"plate":"PIANOCAR","spotter":"Sam","date":"2026-03-11","car":"Toyota","state":"New York","notes":""},{"plate":"NISHHHH","spotter":"Chris","date":"2026-03-12","car":"Mazda","state":"New York","notes":""},{"plate":"TAX MEE","spotter":"Chris","date":"2026-03-13","car":"BMW","state":"New York","notes":"Guest submission from Sarah"},{"plate":"MAD LAME","spotter":"Chris","date":"2026-03-13","car":"Honda","state":"New York","notes":"Guest submission from Sarah"},{"plate":"DEADDIAM","spotter":"Emma","date":"2026-03-14","car":"Chevy","state":"New York","notes":""},{"plate":"AOAO","spotter":"Chris","date":"2026-03-14","car":"BMW","state":"New York","notes":""},{"plate":"PN E LES","spotter":"Chris","date":"2026-03-16","car":"Cadillac","state":"New York","notes":""},{"plate":"IMSOSASY","spotter":"Emma","date":"2026-03-16","car":"Volvo","state":"New York","notes":""},{"plate":"283MIL","spotter":"Chris","date":"2026-03-16","car":"Chevy","state":"New York","notes":""},{"plate":"WORM 1","spotter":"Emma","date":"2026-03-19","car":"GMC","state":"New York","notes":""},{"plate":"JAWZZZ","spotter":"Emma","date":"2026-03-20","car":"Jeep","state":"New York","notes":""},{"plate":"HGHWYGRL","spotter":"Emma","date":"2026-03-22","car":"Dodge","state":"New York","notes":""},{"plate":"MRSHONEY","spotter":"Chris","date":"2026-03-23","car":"Saturn","state":"New York","notes":""},{"plate":"HGHWYGRL","spotter":"Emma","date":"2026-03-24","car":"Dodge","state":"New York","notes":""},{"plate":"SADCLOWN","spotter":"Emma","date":"2026-03-25","car":"Mini Cooper","state":"New York","notes":"Two-fer with L3T IT B"},{"plate":"L3T IT B","spotter":"Emma","date":"2026-03-25","car":"Lexus","state":"New York","notes":"Two-fer with SADCLOWN"},{"plate":"THEBRUJA","spotter":"Chris","date":"2026-03-26","car":"Jeep","state":"New York","notes":""},{"plate":"JSTASIAM","spotter":"Chris","date":"2026-03-26","car":"Jeep","state":"New York","notes":""},{"plate":"PTI PTI","spotter":"Sam","date":"2026-03-29","car":"Toyota","state":"New York","notes":""},{"plate":"AIM SAFE","spotter":"Emma","date":"2026-03-29","car":"Volvo","state":"New York","notes":""},{"plate":"KAT LDY","spotter":"Emma","date":"2026-03-29","car":"Honda","state":"New York","notes":""},{"plate":"TTKWTY","spotter":"Chris","date":"2026-03-30","car":"Volvo","state":"New York","notes":""},{"plate":"AB CYA","spotter":"Emma","date":"2026-04-01","car":"BMW","state":"New York","notes":""},{"plate":"TWNFLAME","spotter":"Emma","date":"2026-04-02","car":"Nissan","state":"New York","notes":""},{"plate":"UDRCHAOS","spotter":"Chris","date":"2026-04-02","car":"Cadillac","state":"New York","notes":""},{"plate":"SHAJUAN2","spotter":"Chris","date":"2026-04-04","car":"Chevy","state":"New York","notes":""},{"plate":"CHICKA07","spotter":"Chris","date":"2026-04-08","car":"Jeep","state":"New York","notes":""},{"plate":"VISION C","spotter":"Chris","date":"2026-04-08","car":"Hummer","state":"New York","notes":""},{"plate":"SM00R3S","spotter":"Emma","date":"2026-04-08","car":"Ford","state":"New York","notes":""},{"plate":"JOKER HA","spotter":"Emma","date":"2026-04-08","car":"Jeep","state":"New York","notes":""},{"plate":"UM IMAD","spotter":"Emma","date":"2026-04-08","car":"Hyundai","state":"New York","notes":""},{"plate":"BOMPAH","spotter":"Sheila","date":"2026-04-09","car":"Toyota","state":"New York","notes":""},{"plate":"FOBGRL","spotter":"Chris","date":"2026-04-09","car":"Jeep","state":"New York","notes":""},{"plate":"HARD WK","spotter":"Chris","date":"2026-04-16","car":"Chevy","state":"New York","notes":""},{"plate":"MADS DAD","spotter":"Sheila","date":"2026-04-16","car":"Dodge","state":"New York","notes":""},{"plate":"I PRAY","spotter":"Sheila","date":"2026-04-17","car":"Dodge","state":"New York","notes":""},{"plate":"D1MNDGRL","spotter":"Chris","date":"2026-04-18","car":"Chevy","state":"New York","notes":""},{"plate":"1B4DED","spotter":"Emma","date":"2026-04-19","car":"Ford","state":"New York","notes":"Guest submission from Emma's Mom"},{"plate":"DURANTE","spotter":"Gab","date":"2026-04-19","car":"Toyota","state":"New York","notes":""},{"plate":"LADYBALM","spotter":"Chris","date":"2026-04-22","car":"Chevy","state":"New York","notes":""},{"plate":"R3DWA1","spotter":"Sam","date":"2026-04-25","car":"Honda","state":"New York","notes":""},{"plate":"LAXWGN","spotter":"Emma","date":"2026-04-25","car":"Chevy","state":"New York","notes":""},{"plate":"716 BRBI","spotter":"Chris","date":"2026-04-27","car":"GMC","state":"New York","notes":""},{"plate":"WAGNWHLS","spotter":"Emma","date":"2026-04-29","car":"Mercedes","state":"Ontario","notes":"Ontario"},{"plate":"RIPJAMES","spotter":"Emma","date":"2026-04-29","car":"Buick","state":"New York","notes":""},{"plate":"ADVNTUR","spotter":"Sam","date":"2026-04-29","car":"Land Rover","state":"New York","notes":""},{"plate":"FVNERAL","spotter":"Chris","date":"2026-04-30","car":"Buick","state":"New York","notes":""},{"plate":"MVASLUSH","spotter":"Chris","date":"2026-05-01","car":"Kia","state":"New York","notes":""},{"plate":"ALERO","spotter":"Chris","date":"2026-05-01","car":"BMW","state":"New York","notes":""},{"plate":"5ULTAN","spotter":"Chris","date":"2026-05-01","car":"BMW","state":"New York","notes":""},{"plate":"ARUBASUE","spotter":"Chris","date":"2026-05-03","car":"Honda","state":"New York","notes":""},{"plate":"BROCSALD","spotter":"Gab","date":"2026-05-04","car":"Nissan","state":"New York","notes":""},{"plate":"BILSWU","spotter":"Emma","date":"2026-05-04","car":"Jeep","state":"New York","notes":""},{"plate":"UH60MIKE","spotter":"Chris","date":"2026-05-05","car":"Ford","state":"New York","notes":""},{"plate":"DJ REDD","spotter":"Chris","date":"2026-05-05","car":"Cadillac","state":"New York","notes":""},{"plate":"TIMOOO","spotter":"Emma","date":"2026-05-07","car":"BMW","state":"New York","notes":""},{"plate":"2L8IMHIS","spotter":"Emma","date":"2026-05-08","car":"BMW","state":"New York","notes":""},{"plate":"GETUP10X","spotter":"Emma","date":"2026-05-08","car":"Volkswagen","state":"New York","notes":""},{"plate":"BIGGCASH","spotter":"Emma","date":"2026-05-08","car":"Chevy","state":"New York","notes":""},{"plate":"FLYNNER","spotter":"Chris","date":"2026-05-08","car":"GMC","state":"New York","notes":""},{"plate":"U WEIRD","spotter":"Sam","date":"2026-05-08","car":"Alfa Romeo","state":"New York","notes":""}];
 
-// ── LEADERBOARD ──
 function buildLB() {
   const lb = document.getElementById('lb');
   PEOPLE.forEach((p, i) => {
@@ -617,7 +566,6 @@ function buildLB() {
   setTimeout(() => document.querySelectorAll('.lb-bar').forEach(b => b.style.width = b.dataset.pct + '%'), 200);
 }
 
-// ── ALL PLATES TABLE ──
 let platesSort = { col:'date', dir:1 };
 let activeSpotter = 'All';
 
@@ -693,7 +641,6 @@ function renderPlates() {
   }).join('');
 }
 
-// ── PROFILE VIEW ──
 let profileSort = { col:'date', dir:1 };
 let profileFilter = 'All';
 let currentName = '';

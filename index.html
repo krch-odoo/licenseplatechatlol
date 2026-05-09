@@ -138,7 +138,7 @@ table.main tr:hover td{background:var(--card2)}
 .back-btn:hover{background:var(--surface);transform:translateX(-3px)}
 
 /* PROFILE */
-.profile-hero{border-radius:var(--radius);padding:2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
+.profile-hero{border-radius:var(--radius);padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
 .profile-hero-inner{position:relative;z-index:1;display:flex;align-items:center;gap:1.5rem;width:100%}
 .profile-avatar-lg{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;flex-shrink:0}
 .profile-name-lg{font-family:var(--display);font-size:2.8rem;line-height:1;margin-bottom:4px}
@@ -168,6 +168,146 @@ table.profile-tbl tr:hover td{background:var(--card2)}
 .ptd-plate{font-family:var(--mono);font-weight:500;letter-spacing:.06em}
 .ptd-date{color:var(--muted);white-space:nowrap}
 .ptd-car{color:var(--muted)}
+
+/* ── FLOATING AUDIO PLAYER ── */
+.audio-player {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 10000;
+  background: rgba(15,15,19,.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--border);
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transform: translateY(100%);
+  transition: transform .45s cubic-bezier(.16,1,.3,1);
+}
+.audio-player.visible { transform: translateY(0); }
+
+/* gradient accent line along the top edge */
+.audio-player::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--grad-hero);
+  opacity: .6;
+}
+
+.ap-play {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  background: var(--grad-hero);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #fff;
+  transition: transform .15s, opacity .15s, box-shadow .15s;
+  box-shadow: 0 0 16px rgba(255,60,172,.35);
+}
+.ap-play:hover { transform: scale(1.1); box-shadow: 0 0 22px rgba(255,60,172,.55); }
+.ap-play:active { transform: scale(.94); opacity: .85; }
+
+.ap-info { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; min-width: 0; max-width: 150px; }
+.ap-track { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+.ap-sub { font-size: 10px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+
+.ap-progress-wrap { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.ap-bar-track {
+  height: 3px;
+  background: var(--surface2);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+.ap-bar-fill {
+  height: 100%;
+  background: var(--grad-hero);
+  border-radius: 2px;
+  width: 0%;
+  pointer-events: none;
+  transition: width .25s linear;
+}
+/* scrubber thumb */
+.ap-bar-track::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: var(--thumb-pct, 0%);
+  transform: translate(-50%, -50%) scale(0);
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform .15s;
+  pointer-events: none;
+}
+.ap-bar-track:hover::after { transform: translate(-50%,-50%) scale(1); }
+
+.ap-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--faint);
+  font-family: var(--mono);
+}
+
+.ap-vol-wrap { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.ap-vol-icon {
+  font-size: 14px; cursor: pointer;
+  color: var(--muted); transition: color .15s;
+  user-select: none; line-height: 1;
+}
+.ap-vol-icon:hover { color: var(--text); }
+input.ap-vol-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 72px; height: 3px;
+  background: var(--surface2);
+  border-radius: 2px;
+  outline: none; cursor: pointer;
+}
+input.ap-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--pink);
+  cursor: pointer;
+  transition: transform .15s;
+}
+input.ap-vol-slider::-webkit-slider-thumb:hover { transform: scale(1.3); }
+input.ap-vol-slider::-moz-range-thumb {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--pink);
+  border: none;
+  cursor: pointer;
+}
+
+.ap-dismiss {
+  background: none; border: none;
+  color: var(--faint); font-size: 18px;
+  cursor: pointer; flex-shrink: 0;
+  transition: color .15s;
+  padding: 4px; line-height: 1;
+}
+.ap-dismiss:hover { color: var(--text); }
+
+/* push page content up so nothing hides behind the player */
+body.player-visible { padding-bottom: 64px; }
+
+@media(max-width:600px){
+  .audio-player { gap: .85rem; padding: 0 1rem; }
+  .ap-info { max-width: 80px; }
+  .ap-vol-wrap { display: none; }
+  .ap-times { display: none; }
+}
 
 /* FOOTER */
 .footer{text-align:center;padding:3rem 2rem;font-size:12px;color:var(--faint);letter-spacing:.08em;border-top:1px solid var(--border)}
@@ -287,7 +427,156 @@ table.profile-tbl tr:hover td{background:var(--card2)}
 </div>
 
 <footer class="footer">chris's license plate chat &bull; year one wrapped</footer>
+</div><!-- /page -->
+
+<!-- ══════════════════════════════════════════
+     FLOATING AUDIO PLAYER
+     ➜ Replace YOUR_AUDIO_FILE.mp3 with the
+       actual path to your audio file.
+       E.g. "music/vibes.mp3" or a full URL.
+     ══════════════════════════════════════════ -->
+<audio id="ap-audio" src="YOUR_AUDIO_FILE.mp3" preload="metadata" loop></audio>
+
+<div class="audio-player" id="audio-player">
+  <button class="ap-play" id="ap-play-btn" aria-label="Play">&#9654;</button>
+  <div class="ap-info">
+    <div class="ap-track" id="ap-track-name">Now Playing</div>
+    <div class="ap-sub">Plate Wrapped</div>
+  </div>
+  <div class="ap-progress-wrap">
+    <div class="ap-bar-track" id="ap-bar-track">
+      <div class="ap-bar-fill" id="ap-bar-fill"></div>
+    </div>
+    <div class="ap-times">
+      <span id="ap-cur">0:00</span>
+      <span id="ap-dur">0:00</span>
+    </div>
+  </div>
+  <div class="ap-vol-wrap">
+    <span class="ap-vol-icon" id="ap-vol-icon">🔊</span>
+    <input class="ap-vol-slider" id="ap-vol-slider" type="range" min="0" max="1" step="0.02" value="0.8">
+  </div>
+  <button class="ap-dismiss" id="ap-dismiss" aria-label="Dismiss player" title="Dismiss">✕</button>
 </div>
+
+<script>
+// ─── AUDIO PLAYER ───────────────────────────────────────────────
+(function() {
+  const audio     = document.getElementById('ap-audio');
+  const player    = document.getElementById('audio-player');
+  const playBtn   = document.getElementById('ap-play-btn');
+  const barTrack  = document.getElementById('ap-bar-track');
+  const barFill   = document.getElementById('ap-bar-fill');
+  const curEl     = document.getElementById('ap-cur');
+  const durEl     = document.getElementById('ap-dur');
+  const volSlider = document.getElementById('ap-vol-slider');
+  const volIcon   = document.getElementById('ap-vol-icon');
+  const dismiss   = document.getElementById('ap-dismiss');
+  const trackName = document.getElementById('ap-track-name');
+
+  // ── Set the display name of your track here ──────────────────
+  const TRACK_DISPLAY_NAME = 'Your Track Name';
+  trackName.textContent = TRACK_DISPLAY_NAME;
+
+  let isPlaying = false;
+  let scrubbing = false;
+
+  // Show player after a short delay
+  setTimeout(() => {
+    player.classList.add('visible');
+    document.body.classList.add('player-visible');
+  }, 800);
+
+  function fmt(s) {
+    if (isNaN(s) || !isFinite(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  function setPlayIcon(playing) {
+    playBtn.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+  }
+
+  function updateBar() {
+    if (!audio.duration || scrubbing) return;
+    const pct = (audio.currentTime / audio.duration) * 100;
+    barFill.style.width = pct + '%';
+    barTrack.style.setProperty('--thumb-pct', pct + '%');
+    curEl.textContent = fmt(audio.currentTime);
+  }
+
+  // Play / Pause
+  playBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch(() => {});
+    }
+  });
+
+  audio.addEventListener('play',  () => { isPlaying = true;  setPlayIcon(true);  });
+  audio.addEventListener('pause', () => { isPlaying = false; setPlayIcon(false); });
+  audio.addEventListener('ended', () => { isPlaying = false; setPlayIcon(false); barFill.style.width = '0%'; curEl.textContent = '0:00'; });
+
+  audio.addEventListener('loadedmetadata', () => {
+    durEl.textContent = fmt(audio.duration);
+  });
+
+  audio.addEventListener('timeupdate', updateBar);
+
+  // Scrubbing
+  function scrubTo(e) {
+    const rect = barTrack.getBoundingClientRect();
+    const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    if (audio.duration) {
+      audio.currentTime = pct * audio.duration;
+      barFill.style.width = (pct * 100) + '%';
+      barTrack.style.setProperty('--thumb-pct', (pct * 100) + '%');
+      curEl.textContent = fmt(audio.currentTime);
+    }
+  }
+
+  barTrack.addEventListener('mousedown', (e) => {
+    scrubbing = true;
+    scrubTo(e);
+  });
+  document.addEventListener('mousemove', (e) => { if (scrubbing) scrubTo(e); });
+  document.addEventListener('mouseup',   ()  => { scrubbing = false; });
+
+  // Touch scrubbing
+  barTrack.addEventListener('touchstart', (e) => {
+    scrubbing = true;
+    scrubTo(e.touches[0]);
+    e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('touchmove',  (e) => { if (scrubbing) scrubTo(e.touches[0]); }, { passive: true });
+  document.addEventListener('touchend',   ()  => { scrubbing = false; });
+
+  // Volume
+  audio.volume = parseFloat(volSlider.value);
+  volSlider.addEventListener('input', () => {
+    audio.volume = parseFloat(volSlider.value);
+    audio.muted  = audio.volume === 0;
+    volIcon.textContent = audio.volume === 0 ? '🔇' : audio.volume < 0.4 ? '🔉' : '🔊';
+  });
+
+  volIcon.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    volIcon.textContent = audio.muted ? '🔇' : '🔊';
+    volSlider.value     = audio.muted ? 0 : audio.volume;
+  });
+
+  // Dismiss
+  dismiss.addEventListener('click', () => {
+    audio.pause();
+    player.classList.remove('visible');
+    document.body.classList.remove('player-visible');
+    setTimeout(() => player.remove(), 500);
+  });
+})();
+// ─── END AUDIO PLAYER ───────────────────────────────────────────
+</script>
 
 <script>
 const SPOTTER_CONFIG = {

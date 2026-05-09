@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plate Wrapped 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0f0f13; --card:#1a1a22; --card2:#222230; --surface:#2a2a38; --surface2:#34344a;
+  --border:rgba(255,255,255,0.08); --text:#ffffff; --muted:#888899; --faint:#444458;
+  --orange:#ff6b35; --pink:#ff3cac; --purple:#7b2fff; --blue:#00b4d8; --yellow:#ffd60a; --teal:#00f5d4;
+  --grad-hero:linear-gradient(135deg,#ff6b35 0%,#ff3cac 40%,#7b2fff 100%);
+  --mono:'DM Mono',monospace; --display:'Bebas Neue',sans-serif; --sans:'DM Sans',sans-serif;
+  --radius:16px; --radius-sm:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.6}
+.page{position:relative;z-index:1}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 30%,rgba(255,107,53,.22) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 20%,rgba(255,60,172,.2) 0%,transparent 55%),radial-gradient(ellipse 70% 60% at 50% 80%,rgba(123,47,255,.18) 0%,transparent 60%);pointer-events:none;animation:bgShift 12s ease-in-out infinite}
+@keyframes bgShift{0%,100%{opacity:1}50%{opacity:.7}}
+.hero-eyebrow{font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.2rem;opacity:0;animation:fadeUp .5s ease forwards .2s}
+.hero-title{font-family:var(--display);font-size:clamp(5rem,18vw,12rem);line-height:.9;letter-spacing:.02em;margin-bottom:.5rem;opacity:0;animation:fadeUp .5s ease forwards .35s}
+.hero-title .line1{display:block;color:var(--text)}
+.hero-title .line2{display:block;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1rem;color:var(--muted);margin-bottom:3rem;opacity:0;animation:fadeUp .5s ease forwards .5s}
+.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .5s ease forwards .65s}
+.hero-stat-n{font-family:var(--display);font-size:3.5rem;line-height:1;background:var(--grad-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stat-l{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.1em;text-transform:uppercase}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:11px;color:var(--faint);letter-spacing:.15em;text-transform:uppercase;opacity:0;animation:fadeIn 1s ease forwards 1.4s}
+.scroll-hint::after{content:' ↓';animation:bounce 2s ease-in-out 2s infinite;display:inline-block}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* LAYOUT */
+.section{max-width:900px;margin:0 auto;padding:5rem 1.5rem}
+.section.wide{max-width:1100px}
+.divider{height:1px;max-width:900px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--surface2),transparent)}
+.divider.wide{max-width:1100px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.section-title{font-family:var(--display);font-size:clamp(2.5rem,7vw,4.5rem);line-height:1;letter-spacing:.02em;margin-bottom:1.75rem}
+.accent-orange{color:var(--orange)} .accent-pink{color:var(--pink)} .accent-purple{color:var(--purple)}
+.accent-blue{color:var(--blue)} .accent-yellow{color:var(--yellow)} .accent-teal{color:var(--teal)}
+
+/* DROUGHT */
+.drought-card{border-radius:var(--radius);padding:2.5rem 2rem;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative;overflow:hidden}
+.drought-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,10,.12),transparent 70%);pointer-events:none}
+.drought-num{font-family:var(--display);font-size:5rem;line-height:1;color:var(--yellow)}
+.drought-unit{font-size:1.1rem;color:var(--muted);font-weight:700;margin-left:6px}
+.drought-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.drought-detail{font-size:14px;color:var(--muted);margin-top:8px}
+.drought-icon{font-size:3.5rem;opacity:.25;flex-shrink:0}
+
+/* PODIUM */
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.podium-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem 1rem;text-align:center;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+.podium-card:hover{transform:translateY(-4px)}
+.podium-card.gold{border-color:rgba(255,214,10,.4)}
+.podium-card.gold::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,214,10,.1),transparent 65%);pointer-events:none}
+.podium-card.silver{border-color:rgba(180,180,210,.3)}
+.podium-card.silver::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(200,200,240,.06),transparent 65%);pointer-events:none}
+.podium-card.bronze{border-color:rgba(255,107,53,.3)}
+.podium-card.bronze::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,107,53,.08),transparent 65%);pointer-events:none}
+.podium-medal{font-size:2.2rem;margin-bottom:10px}
+.podium-brand{font-family:var(--display);font-size:2rem;letter-spacing:.02em;margin-bottom:4px}
+.podium-count{font-size:13px;color:var(--muted)}
+.podium-count strong{color:var(--text)}
+
+/* LEADERBOARD */
+.lb{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.lb-row{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.lb-row:last-child{border-bottom:none}
+.lb-row:hover{background:var(--card2)}
+.lb-rank{font-size:12px;color:var(--faint);width:16px;text-align:right;flex-shrink:0;font-weight:700}
+.lb-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;letter-spacing:.03em}
+.lb-name{font-size:15px;font-weight:700;flex:1}
+.lb-bar-wrap{width:130px;height:4px;background:var(--surface);border-radius:2px;overflow:hidden}
+.lb-bar{height:100%;border-radius:2px;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.lb-count{font-size:15px;font-weight:900;width:30px;text-align:right}
+.lb-arrow{color:var(--faint);font-size:18px}
+
+/* ALL PLATES PANEL */
+.plates-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.plates-search-bar{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--card2)}
+.search-wrap{position:relative;flex:1;min-width:200px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;pointer-events:none}
+.search-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:50px;padding:9px 14px 9px 36px;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .15s}
+.search-input::placeholder{color:var(--faint)}
+.search-input:focus{border-color:var(--pink)}
+.filter-group{display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:50px;padding:7px 14px;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap}
+.filter-btn:hover{border-color:var(--surface2);color:var(--text)}
+.filter-btn.active{color:var(--text);border-color:transparent}
+.filter-btn.f-all.active{background:linear-gradient(135deg,#ff6b35,#ff3cac);border-color:transparent}
+.filter-btn.f-Chris.active{background:linear-gradient(135deg,#00b4d8,#00f5d4);color:#000}
+.filter-btn.f-Emma.active{background:linear-gradient(135deg,#ff3cac,#7b2fff)}
+.filter-btn.f-Sam.active{background:linear-gradient(135deg,#ff6b35,#ffd60a);color:#000}
+.filter-btn.f-Sheila.active{background:linear-gradient(135deg,#7b2fff,#ff3cac)}
+.filter-btn.f-Gab.active{background:linear-gradient(135deg,#ffd60a,#ff6b35);color:#000}
+.plates-meta{padding:.65rem 1.25rem;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+.plates-meta-count strong{color:var(--text)}
+.plates-table-wrap{overflow-x:auto;max-height:560px;overflow-y:auto}
+.plates-table-wrap::-webkit-scrollbar{width:6px;height:6px}
+.plates-table-wrap::-webkit-scrollbar-track{background:transparent}
+.plates-table-wrap::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:3px}
+table.main{width:100%;border-collapse:collapse;font-size:13px}
+table.main thead{position:sticky;top:0;z-index:10}
+table.main thead tr{background:var(--surface)}
+table.main th{padding:11px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;white-space:nowrap;user-select:none;transition:color .15s;border-bottom:1px solid var(--border)}
+table.main th:hover{color:var(--text)}
+table.main th.sorted{color:var(--pink)}
+.sort-arrow{margin-left:3px;font-size:10px;opacity:.5}
+table.main th.sorted .sort-arrow{opacity:1}
+table.main td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+table.main tr:last-child td{border-bottom:none}
+table.main tr:hover td{background:var(--card2)}
+.td-plate{font-family:var(--mono);font-weight:500;letter-spacing:.06em;font-size:13px}
+.td-date{color:var(--muted);white-space:nowrap;font-size:12px}
+.td-car{color:var(--muted);font-size:12px}
+.td-notes{color:var(--muted);font-size:12px;font-style:italic;max-width:220px}
+.spotter-chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px}
+.badge-state{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:50px;background:var(--surface);color:var(--muted)}
+.badge-state.oos{background:rgba(0,180,216,.15);color:var(--blue)}
+.no-results{padding:3rem;text-align:center;color:var(--muted);font-size:14px}
+
+/* VIEWS */
+#profile-view{display:none}
+#profile-view.active{display:block}
+#main-view.hidden{display:none}
+
+/* BACK BTN */
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--card2);border:1px solid var(--border);border-radius:50px;padding:10px 22px;color:var(--text);font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s,transform .15s;margin-bottom:2rem}
+.back-btn:hover{background:var(--surface);transform:translateX(-3px)}
+
+/* PROFILE */
+.profile-hero{border-radius:var(--radius);padding:2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
+.profile-hero-inner{position:relative;z-index:1;display:flex;align-items:center;gap:1.5rem;width:100%}
+.profile-avatar-lg{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;flex-shrink:0}
+.profile-name-lg{font-family:var(--display);font-size:2.8rem;line-height:1;margin-bottom:4px}
+.profile-sub-lg{font-size:14px;color:rgba(255,255,255,.6)}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.ms{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.1rem 1rem;text-align:center}
+.ms-n{font-family:var(--display);font-size:2.2rem;line-height:1}
+.ms-l{font-size:11px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;margin-bottom:10px}
+.ic-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.ic-val{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.plate-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.plate-pill{font-family:var(--mono);font-size:12px;font-weight:500;background:var(--surface);border:1px solid var(--surface2);border-radius:50px;padding:4px 14px;color:var(--text);letter-spacing:.06em}
+.profile-table-controls{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.tbl-count{font-size:13px;color:var(--muted)}
+.state-select{background:var(--card2);border:1px solid var(--border);border-radius:50px;padding:7px 16px;color:var(--text);font-family:var(--sans);font-size:13px;font-weight:700;cursor:pointer;outline:none;appearance:none;transition:border-color .15s}
+.state-select:focus{border-color:var(--pink)}
+.profile-table-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+table.profile-tbl{width:100%;border-collapse:collapse;font-size:14px}
+table.profile-tbl thead tr{background:var(--card2)}
+table.profile-tbl th{padding:12px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;white-space:nowrap;user-select:none;transition:color .15s}
+table.profile-tbl th:hover{color:var(--text)}
+table.profile-tbl th.sorted{color:var(--pink)}
+table.profile-tbl td{padding:12px 16px;border-bottom:1px solid var(--border)}
+table.profile-tbl tr:last-child td{border-bottom:none}
+table.profile-tbl tr:hover td{background:var(--card2)}
+.ptd-plate{font-family:var(--mono);font-weight:500;letter-spacing:.06em}
+.ptd-date{color:var(--muted);white-space:nowrap}
+.ptd-car{color:var(--muted)}
+
+/* FOOTER */
+.footer{text-align:center;padding:3rem 2rem;font-size:12px;color:var(--faint);letter-spacing:.08em;border-top:1px solid var(--border)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .hero-stats{gap:1.5rem}
+  .podium{gap:8px}
+  .podium-brand{font-size:1.5rem}
+  .lb-bar-wrap{width:70px}
+  .mini-stats{gap:8px}
+  .profile-hero-inner{flex-direction:column;text-align:center}
+  .drought-card{flex-direction:column;text-align:center}
+  .filter-group{gap:5px}
+  .filter-btn{padding:6px 10px;font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-eyebrow">chris's license plate chat &bull; year one</p>
+  <h1 class="hero-title"><span class="line1">Plate</span><span class="line2">Wrapped</span></h1>
+  <p class="hero-sub">May 2025 &ndash; May 2026</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-n">216</div><div class="hero-stat-l">Total Plates</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">5</div><div class="hero-stat-l">Spotters</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">14</div><div class="hero-stat-l">Months</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">23</div><div class="hero-stat-l">Out of State</div></div>
+  </div>
+  <p class="scroll-hint">scroll</p>
+</section>
+
+<div id="main-view">
+
+<!-- DROUGHT -->
+<div class="divider"></div>
+<section class="section">
+  <p class="section-label">group stat</p>
+  <h2 class="section-title accent-yellow">Longest Drought</h2>
+  <div class="drought-card">
+    <div>
+      <div class="drought-label">longest gap between any submission</div>
+      <div><span class="drought-num">16</span><span class="drought-unit">days</span></div>
+      <div class="drought-detail">May 14 &rarr; May 30, 2025 &mdash; the group was still finding its legs</div>
+    </div>
+    <div class="drought-icon">🌵</div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="divider"></div>
+<section class="section">
+  <p class="section-label">group stat</p>
+  <h2 class="section-title accent-orange">Top Car Brands</h2>
+  <div class="podium">
+    <div class="podium-card gold"><div class="podium-medal">🥇</div><div class="podium-brand" style="color:var(--yellow)">Chevy</div><div class="podium-count"><strong>25</strong> plates</div></div>
+    <div class="podium-card silver"><div class="podium-medal">🥈</div><div class="podium-brand" style="color:#c8c8e8">Jeep</div><div class="podium-count"><strong>22</strong> plates</div></div>
+    <div class="podium-card bronze"><div class="podium-medal">🥉</div><div class="podium-brand" style="color:var(--orange)">Ford</div><div class="podium-count"><strong>16</strong> plates</div></div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<div class="divider"></div>
+<section class="section">
+  <p class="section-label">rankings</p>
+  <h2 class="section-title accent-pink">Leaderboard</h2>
+  <div class="lb" id="lb"></div>
+</section>
+
+<!-- ALL PLATES -->
+<div class="divider wide"></div>
+<section class="section wide">
+  <p class="section-label">the full archive</p>
+  <h2 class="section-title accent-teal">All Plates</h2>
+  <div class="plates-panel">
+    <div class="plates-search-bar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" id="plate-search" type="text" placeholder="Search plates, spotters, cars, notes…" oninput="renderPlates()">
+      </div>
+      <div class="filter-group" id="spotter-filters"></div>
+    </div>
+    <div class="plates-meta">
+      <span class="plates-meta-count" id="plates-count"></span>
+      <span style="font-size:11px;color:var(--faint)">click columns to sort</span>
+    </div>
+    <div class="plates-table-wrap">
+      <table class="main" id="plates-table">
+        <thead>
+          <tr>
+            <th onclick="sortPlates('plate')" id="th-plate">Plate <span class="sort-arrow">↕</span></th>
+            <th onclick="sortPlates('spotter')" id="th-spotter">Spotter <span class="sort-arrow">↕</span></th>
+            <th onclick="sortPlates('date')" id="th-date" class="sorted">Date <span class="sort-arrow">↑</span></th>
+            <th onclick="sortPlates('car')" id="th-car">Car <span class="sort-arrow">↕</span></th>
+            <th onclick="sortPlates('state')" id="th-state">State <span class="sort-arrow">↕</span></th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="plates-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</div><!-- /main-view -->
+
+<!-- PROFILE VIEW -->
+<div id="profile-view">
+  <section class="section">
+    <button class="back-btn" onclick="showMain()">&#8592; Back</button>
+    <div id="profile-content"></div>
+  </section>
+</div>
+
+<footer class="footer">chris's license plate chat &bull; year one wrapped</footer>
+</div>
+
+<script>
+const SPOTTER_CONFIG = {
+  Chris:  {grad:'linear-gradient(135deg,#00b4d8,#00f5d4)',avatarBg:'#0d3d4a',avatarText:'#00f5d4',bar:'#00b4d8',chipBg:'rgba(0,180,216,.15)',chipText:'#00b4d8'},
+  Emma:   {grad:'linear-gradient(135deg,#ff3cac,#7b2fff)',avatarBg:'#3a0a35',avatarText:'#ff3cac',bar:'#ff3cac',chipBg:'rgba(255,60,172,.15)',chipText:'#ff3cac'},
+  Sam:    {grad:'linear-gradient(135deg,#ff6b35,#ffd60a)',avatarBg:'#3d1a08',avatarText:'#ff6b35',bar:'#ff6b35',chipBg:'rgba(255,107,53,.15)',chipText:'#ff6b35'},
+  Sheila: {grad:'linear-gradient(135deg,#7b2fff,#ff3cac)',avatarBg:'#1e0a40',avatarText:'#a06bff',bar:'#7b2fff',chipBg:'rgba(123,47,255,.15)',chipText:'#a06bff'},
+  Gab:    {grad:'linear-gradient(135deg,#ffd60a,#ff6b35)',avatarBg:'#3d3000',avatarText:'#ffd60a',bar:'#ffd60a',chipBg:'rgba(255,214,10,.12)',chipText:'#ffd60a'}
+};
+
+const PEOPLE = [
+  {name:'Chris', total:73,drought:30,droughtFrom:'Sep 30',droughtTo:'Oct 30, 2025',streak:3,bestDay:3,bestDayDate:'May 1, 2026',bestDayPlates:['MVASLUSH','5ULTAN','ALERO']},
+  {name:'Emma',  total:69,drought:37,droughtFrom:'Aug 31',droughtTo:'Oct 7, 2025', streak:3,bestDay:6,bestDayDate:'Jul 7, 2025', bestDayPlates:['RANA','SAY WHUT','COW MOO','I TRVL','L0B5TAH','XBOOBX']},
+  {name:'Sam',   total:47,drought:44,droughtFrom:'Dec 23, 2025',droughtTo:'Feb 5, 2026',streak:2,bestDay:3,bestDayDate:'Aug 18, 2025',bestDayPlates:['BUN BUN','2MUCH2','BTRFLY']},
+  {name:'Sheila',total:14,drought:47,droughtFrom:'Jan 4',droughtTo:'Feb 20, 2026',streak:2,bestDay:1,bestDayDate:'Sep 25, 2025',bestDayPlates:['KIM C']},
+  {name:'Gab',   total:5, drought:159,droughtFrom:'Nov 11, 2025',droughtTo:'Apr 19, 2026',streak:1,bestDay:1,bestDayDate:'Jun 8, 2025',bestDayPlates:['HOTWADD']}
+];
+
+const ALL_PLATES = [{"plate":"GYR FLCN","spotter":"Chris","date":"2025-03-27","car":"Subaru","state":"New York","notes":"First Plate submission"},{"plate":"MOES LOL","spotter":"Chris","date":"2025-05-05","car":"","state":"New York","notes":""},{"plate":"JOESDELI","spotter":"Sam","date":"2025-05-13","car":"GMC","state":"New York","notes":""},{"plate":"XMASGIFT","spotter":"Sam","date":"2025-05-14","car":"Tesla","state":"New York","notes":""},{"plate":"GOOGL ME","spotter":"Chris","date":"2025-05-30","car":"Mercedes","state":"New York","notes":"First submitted Two-Fer with 1 of 350"},{"plate":"1 OF 350","spotter":"Chris","date":"2025-05-30","car":"McLaren","state":"New York","notes":"First submitted Two-Fer with GOOGL ME"},{"plate":"WINGSPLZ","spotter":"Sam","date":"2025-05-31","car":"","state":"New York","notes":"Found on a Restaurant Wall"},{"plate":"APAHOUSE","spotter":"Sam","date":"2025-05-31","car":"","state":"New York","notes":"Found on a Restaurant Wall"},{"plate":"BOYSOUL","spotter":"Sam","date":"2025-06-04","car":"Audi","state":"New York","notes":""},{"plate":"MSMETRO","spotter":"Chris","date":"2025-06-05","car":"Kia","state":"New York","notes":""},{"plate":"YICKETTY","spotter":"Sam","date":"2025-06-07","car":"Chevy","state":"New York","notes":""},{"plate":"ONSIGHT","spotter":"Sam","date":"2025-06-07","car":"BMW","state":"New York","notes":""},{"plate":"HOTWADD","spotter":"Gab","date":"2025-06-08","car":"Chevy","state":"New York","notes":""},{"plate":"TONE ONE","spotter":"Emma","date":"2025-06-16","car":"Chevy","state":"New York","notes":""},{"plate":"SMANT","spotter":"Emma","date":"2025-06-16","car":"Lexus","state":"New York","notes":""},{"plate":"NONA 1","spotter":"Emma","date":"2025-06-17","car":"Mini Cooper","state":"New York","notes":""},{"plate":"RIG GIE","spotter":"Chris","date":"2025-06-17","car":"Honda","state":"New York","notes":""},{"plate":"MIRCLWIP","spotter":"Sam","date":"2025-06-20","car":"Mercedes","state":"New York","notes":""},{"plate":"R 5 GIGL","spotter":"Sam","date":"2025-06-24","car":"Buick","state":"New York","notes":""},{"plate":"CLEMMI","spotter":"Emma","date":"2025-06-25","car":"Toyota","state":"New York","notes":""},{"plate":"JSTBGLAD","spotter":"Emma","date":"2025-06-25","car":"Subaru","state":"New York","notes":""},{"plate":"WLKONWTR","spotter":"Chris","date":"2025-06-25","car":"Honda","state":"New York","notes":"Guest Submission from Sarah"},{"plate":"LINDA LU","spotter":"Chris","date":"2025-07-03","car":"Toyota","state":"New York","notes":""},{"plate":"OBX CFO","spotter":"Emma","date":"2025-07-05","car":"Jeep","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"XBOOBX","spotter":"Emma","date":"2025-07-07","car":"","state":"Virginia","notes":"Virginia Plate, Found on Restaurant Wall"},{"plate":"L0B5TAH","spotter":"Emma","date":"2025-07-07","car":"","state":"Virginia","notes":"Virginia Plate, Found on Restaurant Wall"},{"plate":"I TRVL","spotter":"Emma","date":"2025-07-07","car":"","state":"Kentucky","notes":"Kentucky Plate, Found on Restaurant Wall"},{"plate":"RANA","spotter":"Emma","date":"2025-07-07","car":"Kia","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"SAY WHUT","spotter":"Emma","date":"2025-07-07","car":"","state":"New York","notes":"Virginia Plate, Found on Restaurant Wall"},{"plate":"COW MOO","spotter":"Emma","date":"2025-07-07","car":"","state":"Wisconsin","notes":"Wisconsin Plate, Found on Restaurant Wall"},{"plate":"SCHRODS","spotter":"Sam","date":"2025-07-08","car":"Cadillac","state":"New York","notes":""},{"plate":"RDY2GRUV","spotter":"Emma","date":"2025-07-08","car":"Subaru","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"FISH DOC","spotter":"Emma","date":"2025-07-09","car":"Subaru","state":"North Carolina","notes":"North Carolina Plate"},{"plate":"OFFSHOR","spotter":"Emma","date":"2025-07-09","car":"Chevy","state":"Virginia","notes":"Virginia Plate"},{"plate":"TREK ON","spotter":"Emma","date":"2025-07-18","car":"Lexus","state":"New York","notes":""},{"plate":"THFC","spotter":"Sam","date":"2025-07-22","car":"Ford","state":"New York","notes":""},{"plate":"2HDEURN","spotter":"Chris","date":"2025-07-23","car":"Kia","state":"New York","notes":""},{"plate":"UAW THUG","spotter":"Emma","date":"2025-07-23","car":"Ford","state":"New York","notes":""},{"plate":"BILSWU","spotter":"Emma","date":"2025-07-24","car":"Jeep","state":"New York","notes":""},{"plate":"CATLDY","spotter":"Chris","date":"2025-07-30","car":"Chevy","state":"New York","notes":""},{"plate":"EZPEEZ","spotter":"Emma","date":"2025-08-03","car":"Subaru","state":"New Hampshire","notes":"New Hampshire"},{"plate":"TOASTY7","spotter":"Sam","date":"2025-08-03","car":"Hyundai","state":"Virginia","notes":"Virginia"},{"plate":"OMOMOM","spotter":"Sam","date":"2025-08-07","car":"Ford","state":"New York","notes":""},{"plate":"BOYSOUL","spotter":"Chris","date":"2025-08-07","car":"Volkswagen","state":"New York","notes":"2nd find of BOYSOUL on a different car than when Sam found it"},{"plate":"ITS FO","spotter":"Sam","date":"2025-08-07","car":"Cadillac","state":"New York","notes":""},{"plate":"DJXTREME","spotter":"Sam","date":"2025-08-08","car":"Chevy","state":"New York","notes":""},{"plate":"SONGWRTR","spotter":"Emma","date":"2025-08-08","car":"Jeep","state":"New York","notes":"Guest submission from Kendalle"},{"plate":"BURNIT","spotter":"Chris","date":"2025-08-10","car":"Honda","state":"New York","notes":""},{"plate":"BORNRKLS","spotter":"Chris","date":"2025-08-12","car":"Jeep","state":"New York","notes":""},{"plate":"2MUCH2","spotter":"Sam","date":"2025-08-18","car":"Ford","state":"Alaska","notes":"Alaska"},{"plate":"BTRFLY","spotter":"Sam","date":"2025-08-18","car":"","state":"Alaska","notes":"Alaska"},{"plate":"BUN BUN","spotter":"Sam","date":"2025-08-18","car":"Porsche","state":"Alaska","notes":"Alaska"},{"plate":"RDWARRIR","spotter":"Gab","date":"2025-08-26","car":"Toyota","state":"New York","notes":""},{"plate":"LEGLESS","spotter":"Emma","date":"2025-08-31","car":"Chevy","state":"New York","notes":""},{"plate":"BAT MAM","spotter":"Sam","date":"2025-09-09","car":"Tesla","state":"New York","notes":""},{"plate":"IM A EAGL","spotter":"Chris","date":"2025-09-11","car":"Chevy","state":"Ohio","notes":"Ohio"},{"plate":"SENSORS","spotter":"Sam","date":"2025-09-18","car":"Honda","state":"New York","notes":""},{"plate":"GROLLA","spotter":"Sam","date":"2025-09-18","car":"Toyota","state":"New York","notes":""},{"plate":"EL JEFEE","spotter":"Sam","date":"2025-09-18","car":"Mercedes","state":"New York","notes":""},{"plate":"OLEH","spotter":"Sam","date":"2025-09-19","car":"Lexus","state":"New York","notes":""},{"plate":"GOOFY AH","spotter":"Sam","date":"2025-09-21","car":"Audi","state":"New York","notes":""},{"plate":"THANXSMA","spotter":"Chris","date":"2025-09-22","car":"Kia","state":"New York","notes":""},{"plate":"BIG CAP0","spotter":"Chris","date":"2025-09-22","car":"Jeep","state":"New York","notes":""},{"plate":"FONZIE","spotter":"Chris","date":"2025-09-23","car":"Toyota","state":"New York","notes":""},{"plate":"LUCCIFER","spotter":"Sam","date":"2025-09-23","car":"Cadillac","state":"New York","notes":""},{"plate":"SUBIE BB","spotter":"Sam","date":"2025-09-23","car":"Subaru","state":"Ontario","notes":"Ontario"},{"plate":"FARMOR","spotter":"Sam","date":"2025-09-23","car":"Jeep","state":"New York","notes":""},{"plate":"KIM C","spotter":"Sheila","date":"2025-09-25","car":"Chevy","state":"New York","notes":""},{"plate":"FISHLADY","spotter":"Sam","date":"2025-09-26","car":"Toyota","state":"Ontario","notes":"Ontario"},{"plate":"LESB1AN","spotter":"Sam","date":"2025-09-26","car":"Dodge","state":"New York","notes":""},{"plate":"420YK","spotter":"Sam","date":"2025-09-29","car":"Tesla","state":"Florida","notes":"Florida"},{"plate":"MKSMBRDS","spotter":"Chris","date":"2025-09-30","car":"Chevy","state":"New York","notes":"Guest submission from Sarah"},{"plate":"EVILTWNZ","spotter":"Sam","date":"2025-10-02","car":"Tesla","state":"New York","notes":""},{"plate":"PL@Y","spotter":"Sam","date":"2025-10-02","car":"Volkswagen","state":"North Carolina","notes":"North Carolina"},{"plate":"PAINPLSR","spotter":"Sam","date":"2025-10-02","car":"Dodge","state":"New York","notes":""},{"plate":"ADBULHAQ","spotter":"Sheila","date":"2025-10-05","car":"Chevy","state":"New York","notes":""},{"plate":"LOL YEET","spotter":"Sam","date":"2025-10-06","car":"Chevy","state":"New York","notes":""},{"plate":"SUGARNG","spotter":"Emma","date":"2025-10-07","car":"Dodge","state":"New York","notes":""},{"plate":"NOCCFEES","spotter":"Emma","date":"2025-10-07","car":"Mercedes","state":"New York","notes":""},{"plate":"ROB EM","spotter":"Sheila","date":"2025-10-15","car":"Chevy","state":"New York","notes":""},{"plate":"DUBZ","spotter":"Sam","date":"2025-10-16","car":"Hyundai","state":"Ohio","notes":"Ohio"},{"plate":"FACEBOCK","spotter":"Sam","date":"2025-10-29","car":"Lexus","state":"New York","notes":"Guest submission from Sam's Mom"},{"plate":"MRS DAP","spotter":"Chris","date":"2025-10-30","car":"Jeep","state":"New York","notes":""},{"plate":"L1V3R","spotter":"Emma","date":"2025-11-05","car":"Mini Cooper","state":"New York","notes":""},{"plate":"POOH BAH","spotter":"Chris","date":"2025-11-07","car":"Subaru","state":"New York","notes":"Guest submission from Sarah"},{"plate":"DANA LUV","spotter":"Emma","date":"2025-11-10","car":"Ford","state":"New York","notes":""},{"plate":"LADYDI 1","spotter":"Gab","date":"2025-11-11","car":"Cadillac","state":"New York","notes":""},{"plate":"BLAKBTTY","spotter":"Chris","date":"2025-11-12","car":"Chevy","state":"New York","notes":"Guest submission from Sarah"},{"plate":"BIG LOU","spotter":"Sheila","date":"2025-11-12","car":"Dodge","state":"New York","notes":""},{"plate":"ACME CAB","spotter":"Sheila","date":"2025-11-13","car":"Audi","state":"New York","notes":""},{"plate":"WORM 1","spotter":"Emma","date":"2025-11-13","car":"GMC","state":"New York","notes":""},{"plate":"AH U4RIA","spotter":"Emma","date":"2025-11-15","car":"Jaguar","state":"New York","notes":""},{"plate":"HOPE","spotter":"Emma","date":"2025-11-15","car":"Lexus","state":"New York","notes":""},{"plate":"SLOWCAH","spotter":"Sheila","date":"2025-11-22","car":"Chevy","state":"New York","notes":""},{"plate":"K1TT3N","spotter":"Emma","date":"2025-11-23","car":"Ford","state":"New York","notes":""},{"plate":"ABUELA25","spotter":"Emma","date":"2025-11-24","car":"Chevy","state":"New York","notes":""},{"plate":"GOB1LL","spotter":"Emma","date":"2025-11-26","car":"Toyota","state":"New York","notes":""},{"plate":"SAX DJ","spotter":"Emma","date":"2025-11-26","car":"Lexus","state":"New York","notes":""},{"plate":"HAWKIE","spotter":"Emma","date":"2025-11-28","car":"Ford","state":"New York","notes":""},{"plate":"716MAF","spotter":"Emma","date":"2025-11-29","car":"Toyota","state":"New York","notes":""},{"plate":"CWBY FAN","spotter":"Sam","date":"2025-11-30","car":"Ford","state":"Pennsylvania","notes":"Pennsylvania"},{"plate":"MELODY","spotter":"Chris","date":"2025-12-01","car":"Toyota","state":"New York","notes":""},{"plate":"SONGWRTR","spotter":"Emma","date":"2025-12-01","car":"Jeep","state":"New York","notes":"Was a previous guest submission from a friend"},{"plate":"716 BEES","spotter":"Emma","date":"2025-12-02","car":"Mazda","state":"New York","notes":""},{"plate":"CHICKA07","spotter":"Chris","date":"2025-12-02","car":"Jeep","state":"New York","notes":""},{"plate":"M RING","spotter":"Emma","date":"2025-12-07","car":"Nissan","state":"New York","notes":""},{"plate":"AUSHREK","spotter":"Chris","date":"2025-12-08","car":"Kia","state":"New York","notes":""},{"plate":"SIG44","spotter":"Sheila","date":"2025-12-12","car":"Ford","state":"New York","notes":""},{"plate":"M4RELOAD","spotter":"Emma","date":"2025-12-16","car":"BMW","state":"New York","notes":""},{"plate":"LOL YEET","spotter":"Emma","date":"2025-12-17","car":"Chevy","state":"New York","notes":""},{"plate":"MIKE WIF","spotter":"Chris","date":"2025-12-18","car":"GMC","state":"New York","notes":""},{"plate":"FLYNAVY5","spotter":"Chris","date":"2025-12-19","car":"Mercedes","state":"New York","notes":""},{"plate":"GG GHOST","spotter":"Chris","date":"2025-12-22","car":"Volvo","state":"New York","notes":""},{"plate":"ISLAM","spotter":"Sam","date":"2025-12-23","car":"Toyota","state":"New York","notes":""},{"plate":"MRS Y","spotter":"Chris","date":"2025-12-31","car":"Mercedes","state":"New York","notes":""},{"plate":"IMOVURIT","spotter":"Emma","date":"2026-01-02","car":"Acura","state":"New York","notes":""},{"plate":"HAPPYCAP","spotter":"Chris","date":"2026-01-02","car":"Jeep","state":"New York","notes":""},{"plate":"HAPL","spotter":"Chris","date":"2026-01-03","car":"Lincoln","state":"Ontario","notes":"Ontario"},{"plate":"SHEMOB","spotter":"Chris","date":"2026-01-03","car":"GMC","state":"New York","notes":""},{"plate":"BOOKERS","spotter":"Sheila","date":"2026-01-04","car":"Dodge","state":"New York","notes":""},{"plate":"SEINFELD","spotter":"Chris","date":"2026-01-12","car":"Ford","state":"New York","notes":""},{"plate":"ACADIAME","spotter":"Chris","date":"2026-01-14","car":"Subaru","state":"New York","notes":"Captured Side by side with NO MUN E"},{"plate":"NO MUN E","spotter":"Chris","date":"2026-01-14","car":"Mercury","state":"New York","notes":"Captured Side by side with ACADIAME"},{"plate":"ANIMAL","spotter":"Chris","date":"2026-01-15","car":"","state":"New York","notes":"2016 revisited trend"},{"plate":"HYPEMANN","spotter":"Emma","date":"2026-01-28","car":"Ford","state":"New York","notes":""},{"plate":"NICXCAGE","spotter":"Chris","date":"2026-02-02","car":"Mini Cooper","state":"New York","notes":""},{"plate":"GODSGAVE","spotter":"Chris","date":"2026-02-02","car":"Jeep","state":"New York","notes":""},{"plate":"YO NELLY","spotter":"Chris","date":"2026-02-04","car":"Ford","state":"New York","notes":""},{"plate":"BRINGNIT","spotter":"Chris","date":"2026-02-05","car":"BMW","state":"New York","notes":""},{"plate":"ELMO 36","spotter":"Chris","date":"2026-02-05","car":"Nissan","state":"New York","notes":""},{"plate":"COOLTURE","spotter":"Sam","date":"2026-02-05","car":"BMW","state":"New York","notes":""},{"plate":"GWAMMA","spotter":"Chris","date":"2026-02-08","car":"Chrysler","state":"New York","notes":"Guest submission from Sarah"},{"plate":"SUBOO","spotter":"Sam","date":"2026-02-12","car":"","state":"New York","notes":""},{"plate":"SAD GURL","spotter":"Emma","date":"2026-02-14","car":"Jeep","state":"New York","notes":""},{"plate":"KITANA","spotter":"Chris","date":"2026-02-17","car":"Jeep","state":"New York","notes":""},{"plate":"TAX MAN","spotter":"Chris","date":"2026-02-17","car":"","state":"New York","notes":"Found at Tax Appointment"},{"plate":"JAKSKLTN","spotter":"Chris","date":"2026-02-18","car":"Jeep","state":"New York","notes":""},{"plate":"A HUSKER","spotter":"Sheila","date":"2026-02-20","car":"Toyota","state":"New York","notes":""},{"plate":"NICXCAGE","spotter":"Chris","date":"2026-02-24","car":"Mini Cooper","state":"New York","notes":""},{"plate":"I ADJUST","spotter":"Chris","date":"2026-02-25","car":"Subaru","state":"New York","notes":"Guest submission from Sarah"},{"plate":"AWWBEANS","spotter":"Sam","date":"2026-02-26","car":"Subaru","state":"New York","notes":""},{"plate":"ONDGRIND","spotter":"Sheila","date":"2026-03-02","car":"Lexus","state":"New York","notes":""},{"plate":"1 MAMA","spotter":"Sam","date":"2026-03-05","car":"Mini Cooper","state":"New York","notes":""},{"plate":"L3T IT B","spotter":"Emma","date":"2026-03-07","car":"Lexus","state":"New York","notes":""},{"plate":"LITL ANG","spotter":"Emma","date":"2026-03-09","car":"Mini Cooper","state":"Illinois","notes":"Illinois"},{"plate":"JOSH A17","spotter":"Sheila","date":"2026-03-09","car":"Ford","state":"New York","notes":""},{"plate":"HUHH MAN","spotter":"Emma","date":"2026-03-10","car":"Jeep","state":"New York","notes":""},{"plate":"PIANOCAR","spotter":"Sam","date":"2026-03-11","car":"Toyota","state":"New York","notes":""},{"plate":"NISHHHH","spotter":"Chris","date":"2026-03-12","car":"Mazda","state":"New York","notes":""},{"plate":"TAX MEE","spotter":"Chris","date":"2026-03-13","car":"BMW","state":"New York","notes":"Guest submission from Sarah"},{"plate":"MAD LAME","spotter":"Chris","date":"2026-03-13","car":"Honda","state":"New York","notes":"Guest submission from Sarah"},{"plate":"DEADDIAM","spotter":"Emma","date":"2026-03-14","car":"Chevy","state":"New York","notes":""},{"plate":"AOAO","spotter":"Chris","date":"2026-03-14","car":"BMW","state":"New York","notes":""},{"plate":"PN E LES","spotter":"Chris","date":"2026-03-16","car":"Cadillac","state":"New York","notes":""},{"plate":"IMSOSASY","spotter":"Emma","date":"2026-03-16","car":"Volvo","state":"New York","notes":""},{"plate":"283MIL","spotter":"Chris","date":"2026-03-16","car":"Chevy","state":"New York","notes":""},{"plate":"WORM 1","spotter":"Emma","date":"2026-03-19","car":"GMC","state":"New York","notes":""},{"plate":"JAWZZZ","spotter":"Emma","date":"2026-03-20","car":"Jeep","state":"New York","notes":""},{"plate":"HGHWYGRL","spotter":"Emma","date":"2026-03-22","car":"Dodge","state":"New York","notes":""},{"plate":"MRSHONEY","spotter":"Chris","date":"2026-03-23","car":"Saturn","state":"New York","notes":""},{"plate":"HGHWYGRL","spotter":"Emma","date":"2026-03-24","car":"Dodge","state":"New York","notes":""},{"plate":"SADCLOWN","spotter":"Emma","date":"2026-03-25","car":"Mini Cooper","state":"New York","notes":"Two-fer with L3T IT B"},{"plate":"L3T IT B","spotter":"Emma","date":"2026-03-25","car":"Lexus","state":"New York","notes":"Two-fer with SADCLOWN"},{"plate":"THEBRUJA","spotter":"Chris","date":"2026-03-26","car":"Jeep","state":"New York","notes":""},{"plate":"JSTASIAM","spotter":"Chris","date":"2026-03-26","car":"Jeep","state":"New York","notes":""},{"plate":"PTI PTI","spotter":"Sam","date":"2026-03-29","car":"Toyota","state":"New York","notes":""},{"plate":"AIM SAFE","spotter":"Emma","date":"2026-03-29","car":"Volvo","state":"New York","notes":""},{"plate":"KAT LDY","spotter":"Emma","date":"2026-03-29","car":"Honda","state":"New York","notes":""},{"plate":"TTKWTY","spotter":"Chris","date":"2026-03-30","car":"Volvo","state":"New York","notes":""},{"plate":"AB CYA","spotter":"Emma","date":"2026-04-01","car":"BMW","state":"New York","notes":""},{"plate":"TWNFLAME","spotter":"Emma","date":"2026-04-02","car":"Nissan","state":"New York","notes":""},{"plate":"UDRCHAOS","spotter":"Chris","date":"2026-04-02","car":"Cadillac","state":"New York","notes":""},{"plate":"SHAJUAN2","spotter":"Chris","date":"2026-04-04","car":"Chevy","state":"New York","notes":""},{"plate":"CHICKA07","spotter":"Chris","date":"2026-04-08","car":"Jeep","state":"New York","notes":""},{"plate":"VISION C","spotter":"Chris","date":"2026-04-08","car":"Hummer","state":"New York","notes":""},{"plate":"SM00R3S","spotter":"Emma","date":"2026-04-08","car":"Ford","state":"New York","notes":""},{"plate":"JOKER HA","spotter":"Emma","date":"2026-04-08","car":"Jeep","state":"New York","notes":""},{"plate":"UM IMAD","spotter":"Emma","date":"2026-04-08","car":"Hyundai","state":"New York","notes":""},{"plate":"BOMPAH","spotter":"Sheila","date":"2026-04-09","car":"Toyota","state":"New York","notes":""},{"plate":"FOBGRL","spotter":"Chris","date":"2026-04-09","car":"Jeep","state":"New York","notes":""},{"plate":"HARD WK","spotter":"Chris","date":"2026-04-16","car":"Chevy","state":"New York","notes":""},{"plate":"MADS DAD","spotter":"Sheila","date":"2026-04-16","car":"Dodge","state":"New York","notes":""},{"plate":"I PRAY","spotter":"Sheila","date":"2026-04-17","car":"Dodge","state":"New York","notes":""},{"plate":"D1MNDGRL","spotter":"Chris","date":"2026-04-18","car":"Chevy","state":"New York","notes":""},{"plate":"1B4DED","spotter":"Emma","date":"2026-04-19","car":"Ford","state":"New York","notes":"Guest submission from Emma's Mom"},{"plate":"DURANTE","spotter":"Gab","date":"2026-04-19","car":"Toyota","state":"New York","notes":""},{"plate":"LADYBALM","spotter":"Chris","date":"2026-04-22","car":"Chevy","state":"New York","notes":""},{"plate":"R3DWA1","spotter":"Sam","date":"2026-04-25","car":"Honda","state":"New York","notes":""},{"plate":"LAXWGN","spotter":"Emma","date":"2026-04-25","car":"Chevy","state":"New York","notes":""},{"plate":"716 BRBI","spotter":"Chris","date":"2026-04-27","car":"GMC","state":"New York","notes":""},{"plate":"WAGNWHLS","spotter":"Emma","date":"2026-04-29","car":"Mercedes","state":"Ontario","notes":"Ontario"},{"plate":"RIPJAMES","spotter":"Emma","date":"2026-04-29","car":"Buick","state":"New York","notes":""},{"plate":"ADVNTUR","spotter":"Sam","date":"2026-04-29","car":"Land Rover","state":"New York","notes":""},{"plate":"FVNERAL","spotter":"Chris","date":"2026-04-30","car":"Buick","state":"New York","notes":""},{"plate":"MVASLUSH","spotter":"Chris","date":"2026-05-01","car":"Kia","state":"New York","notes":""},{"plate":"ALERO","spotter":"Chris","date":"2026-05-01","car":"BMW","state":"New York","notes":""},{"plate":"5ULTAN","spotter":"Chris","date":"2026-05-01","car":"BMW","state":"New York","notes":""},{"plate":"ARUBASUE","spotter":"Chris","date":"2026-05-03","car":"Honda","state":"New York","notes":""},{"plate":"BROCSALD","spotter":"Gab","date":"2026-05-04","car":"Nissan","state":"New York","notes":""},{"plate":"BILSWU","spotter":"Emma","date":"2026-05-04","car":"Jeep","state":"New York","notes":""},{"plate":"UH60MIKE","spotter":"Chris","date":"2026-05-05","car":"Ford","state":"New York","notes":""},{"plate":"DJ REDD","spotter":"Chris","date":"2026-05-05","car":"Cadillac","state":"New York","notes":""},{"plate":"TIMOOO","spotter":"Emma","date":"2026-05-07","car":"BMW","state":"New York","notes":""},{"plate":"2L8IMHIS","spotter":"Emma","date":"2026-05-08","car":"BMW","state":"New York","notes":""},{"plate":"GETUP10X","spotter":"Emma","date":"2026-05-08","car":"Volkswagen","state":"New York","notes":""},{"plate":"BIGGCASH","spotter":"Emma","date":"2026-05-08","car":"Chevy","state":"New York","notes":""},{"plate":"FLYNNER","spotter":"Chris","date":"2026-05-08","car":"GMC","state":"New York","notes":""},{"plate":"U WEIRD","spotter":"Sam","date":"2026-05-08","car":"Alfa Romeo","state":"New York","notes":""}];
+
+// ── LEADERBOARD ──
+function buildLB() {
+  const lb = document.getElementById('lb');
+  PEOPLE.forEach((p, i) => {
+    const c = SPOTTER_CONFIG[p.name];
+    const pct = Math.round((p.total / 73) * 100);
+    const row = document.createElement('div');
+    row.className = 'lb-row';
+    row.innerHTML = `<div class="lb-rank">${i+1}</div>
+      <div class="lb-avatar" style="background:${c.avatarBg};color:${c.avatarText}">${p.name.slice(0,2).toUpperCase()}</div>
+      <div class="lb-name">${p.name}</div>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:0%;background:${c.bar}" data-pct="${pct}"></div></div>
+      <div class="lb-count" style="color:${c.avatarText}">${p.total}</div>
+      <div class="lb-arrow">›</div>`;
+    row.onclick = () => showProfile(p.name);
+    lb.appendChild(row);
+  });
+  setTimeout(() => document.querySelectorAll('.lb-bar').forEach(b => b.style.width = b.dataset.pct + '%'), 200);
+}
+
+// ── ALL PLATES TABLE ──
+let platesSort = { col:'date', dir:1 };
+let activeSpotter = 'All';
+
+function buildSpotterFilters() {
+  const wrap = document.getElementById('spotter-filters');
+  const all = document.createElement('button');
+  all.className = 'filter-btn f-all active';
+  all.textContent = 'All';
+  all.onclick = () => setSpotterFilter('All', all);
+  wrap.appendChild(all);
+  PEOPLE.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = `filter-btn f-${p.name}`;
+    btn.textContent = p.name;
+    btn.onclick = () => setSpotterFilter(p.name, btn);
+    wrap.appendChild(btn);
+  });
+}
+
+function setSpotterFilter(name, btn) {
+  activeSpotter = name;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPlates();
+}
+
+function sortPlates(col) {
+  if (platesSort.col === col) platesSort.dir *= -1;
+  else platesSort = { col, dir: 1 };
+  ['plate','spotter','date','car','state'].forEach(c => {
+    const th = document.getElementById('th-' + c);
+    if (!th) return;
+    th.className = platesSort.col === c ? 'sorted' : '';
+    th.querySelector('.sort-arrow').textContent = platesSort.col === c ? (platesSort.dir === 1 ? '↑' : '↓') : '↕';
+  });
+  renderPlates();
+}
+
+function renderPlates() {
+  const q = document.getElementById('plate-search').value.toLowerCase().trim();
+  let data = [...ALL_PLATES];
+  if (activeSpotter !== 'All') data = data.filter(p => p.spotter === activeSpotter);
+  if (q) data = data.filter(p =>
+    p.plate.toLowerCase().includes(q) ||
+    p.spotter.toLowerCase().includes(q) ||
+    p.car.toLowerCase().includes(q) ||
+    p.state.toLowerCase().includes(q) ||
+    p.notes.toLowerCase().includes(q)
+  );
+  data.sort((a, b) => {
+    let av = a[platesSort.col]||'', bv = b[platesSort.col]||'';
+    return av < bv ? -platesSort.dir : av > bv ? platesSort.dir : 0;
+  });
+  const tbody = document.getElementById('plates-tbody');
+  const count = document.getElementById('plates-count');
+  count.innerHTML = `<strong>${data.length}</strong> of ${ALL_PLATES.length} plates`;
+  if (data.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="no-results">No plates match your search 🤷</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = data.map(p => {
+    const c = SPOTTER_CONFIG[p.spotter] || {};
+    const oos = p.state && p.state !== 'New York';
+    const ds = p.date ? p.date.slice(5).replace('-','/') + '/' + p.date.slice(0,4) : '';
+    return `<tr>
+      <td class="td-plate">${p.plate}</td>
+      <td><span class="spotter-chip" style="background:${c.chipBg||'rgba(255,255,255,.08)'};color:${c.chipText||'#888'}">${p.spotter}</span></td>
+      <td class="td-date">${ds}</td>
+      <td class="td-car">${p.car||'—'}</td>
+      <td><span class="badge-state${oos?' oos':''}">${p.state||'—'}</span></td>
+      <td class="td-notes">${p.notes||''}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── PROFILE VIEW ──
+let profileSort = { col:'date', dir:1 };
+let profileFilter = 'All';
+let currentName = '';
+
+const profilePlates = {
+  Chris: ALL_PLATES.filter(p => p.spotter === 'Chris'),
+  Emma:  ALL_PLATES.filter(p => p.spotter === 'Emma'),
+  Sam:   ALL_PLATES.filter(p => p.spotter === 'Sam'),
+  Sheila:ALL_PLATES.filter(p => p.spotter === 'Sheila'),
+  Gab:   ALL_PLATES.filter(p => p.spotter === 'Gab')
+};
+
+function buildProfileTable(name) {
+  const plates = profilePlates[name] || [];
+  const oosStates = [...new Set(plates.map(p=>p.state).filter(s=>s&&s!=='New York'))].sort();
+  const states = ['All',...oosStates,'New York'];
+  const filtered = profileFilter==='All' ? plates : plates.filter(p=>p.state===profileFilter);
+  const sorted = [...filtered].sort((a,b)=>{
+    let av=a[profileSort.col]||'',bv=b[profileSort.col]||'';
+    return av<bv?-profileSort.dir:av>bv?profileSort.dir:0;
+  });
+  const arw = col => profileSort.col===col?(profileSort.dir===1?'↑':'↓'):'↕';
+  const sc  = col => profileSort.col===col?'sorted':'';
+  return `<div class="profile-table-controls">
+    <span class="tbl-count">${filtered.length} plate${filtered.length!==1?'s':''}</span>
+    <select class="state-select" onchange="setProfileFilter(this.value)">
+      ${states.map(s=>`<option${s===profileFilter?' selected':''}>${s}</option>`).join('')}
+    </select>
+  </div>
+  <div class="profile-table-wrap"><table class="profile-tbl">
+    <thead><tr>
+      <th class="${sc('plate')}" onclick="sortProfileTable('plate')">Plate <span class="sort-arrow">${arw('plate')}</span></th>
+      <th class="${sc('date')}"  onclick="sortProfileTable('date')">Date <span class="sort-arrow">${arw('date')}</span></th>
+      <th class="${sc('car')}"   onclick="sortProfileTable('car')">Car <span class="sort-arrow">${arw('car')}</span></th>
+      <th class="${sc('state')}" onclick="sortProfileTable('state')">State <span class="sort-arrow">${arw('state')}</span></th>
+    </tr></thead>
+    <tbody>${sorted.map(p=>{
+      const oos=p.state&&p.state!=='New York';
+      const ds=p.date?p.date.slice(5).replace('-','/')+'/'+p.date.slice(0,4):'';
+      return `<tr><td class="ptd-plate">${p.plate}</td><td class="ptd-date">${ds}</td><td class="ptd-car">${p.car||'—'}</td><td><span class="badge-state${oos?' oos':''}">${p.state||'—'}</span></td></tr>`;
+    }).join('')}</tbody>
+  </table></div>`;
+}
+
+function sortProfileTable(col) {
+  if (profileSort.col===col) profileSort.dir*=-1; else profileSort={col,dir:1};
+  document.getElementById('ptw').innerHTML = buildProfileTable(currentName);
+}
+function setProfileFilter(val) {
+  profileFilter = val;
+  document.getElementById('ptw').innerHTML = buildProfileTable(currentName);
+}
+
+function showProfile(name) {
+  currentName = name;
+  profileSort = { col:'date', dir:1 };
+  profileFilter = 'All';
+  const p = PEOPLE.find(x=>x.name===name);
+  const c = SPOTTER_CONFIG[name];
+  document.getElementById('profile-content').innerHTML = `
+    <div class="profile-hero" style="background:${c.grad}">
+      <div class="profile-hero-inner">
+        <div class="profile-avatar-lg" style="background:rgba(0,0,0,.3);color:#fff">${name.slice(0,2).toUpperCase()}</div>
+        <div><div class="profile-name-lg">${name}</div><div class="profile-sub-lg">${p.total} plates spotted</div></div>
+      </div>
+    </div>
+    <div class="mini-stats">
+      <div class="ms"><div class="ms-n" style="background:${c.grad};-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">${p.total}</div><div class="ms-l">Total Plates</div></div>
+      <div class="ms"><div class="ms-n" style="background:${c.grad};-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">${p.streak}d</div><div class="ms-l">Best Streak</div></div>
+      <div class="ms"><div class="ms-n" style="background:${c.grad};-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">${p.drought}d</div><div class="ms-l">Longest Drought</div></div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Best Single Day &mdash; ${p.bestDay} plate${p.bestDay!==1?'s':''}</div>
+      <div class="ic-val">${p.bestDayDate}</div>
+      <div class="plate-pills">${p.bestDayPlates.map(pl=>`<span class="plate-pill">${pl}</span>`).join('')}</div>
+    </div>
+    <div class="info-card" style="margin-bottom:1.5rem">
+      <div class="ic-label">Longest Drought &mdash; ${p.drought} days</div>
+      <div class="ic-val">${p.droughtFrom} &rarr; ${p.droughtTo}</div>
+    </div>
+    <p class="section-label" style="margin-bottom:12px">All Plates</p>
+    <div id="ptw">${buildProfileTable(name)}</div>`;
+  document.getElementById('main-view').classList.add('hidden');
+  document.getElementById('profile-view').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showMain() {
+  document.getElementById('profile-view').classList.remove('active');
+  document.getElementById('main-view').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+window.sortPlates = sortPlates;
+window.sortProfileTable = sortProfileTable;
+window.setProfileFilter = setProfileFilter;
+window.showMain = showMain;
+
+buildLB();
+buildSpotterFilters();
+renderPlates();
+</script>
+</body>
+</html>
